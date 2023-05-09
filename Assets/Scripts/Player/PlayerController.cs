@@ -12,15 +12,18 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
 
-    [SerializeField] private bool onAir = false;
-    [SerializeField] private bool movingRight = false;
-    [SerializeField] private bool movingLeft = false;
+    private bool onAir = false;
+    private bool movingRight = false;
+    private bool movingLeft = false;
     private bool isColliding = false;
     private bool isVertical = false;
+    private bool isDashing = false;
 
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
+    [SerializeField] private float dashIntensity = 5f;
+    [SerializeField] private float extraJumpIntensity = 2f;
 
 
     private void Awake() {
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Movement.performed += Move;
         playerInputActions.Player.Switch.performed += Switch;
+        playerInputActions.Player.Dash.performed += Dash;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -45,15 +49,22 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
         if(!(onAir && isColliding)){
             Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
-            rb.velocity = new Vector2(inputVector.x * moveSpeed, rb.velocity.y);
+            ApplyMovement(inputVector);
         }
+        if(isDashing){
+            ApplyDash();
+        }
+        
         ApplyGravity();
     }
 
     private void Move(InputAction.CallbackContext context)
     {
-        Vector2 inputVector = context.ReadValue<Vector2>();
-        rb.velocity = new Vector2(inputVector.x * moveSpeed, rb.velocity.y);
+        if(!(onAir && isColliding)){
+            Vector2 inputVector = context.ReadValue<Vector2>();
+            ApplyMovement(inputVector);
+        }
+
         if(rb.velocity.x > 0f){
             movingRight = true;
             movingLeft = false;
@@ -63,9 +74,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ApplyMovement(Vector2 inputVector){
+        rb.velocity = new Vector2(inputVector.x * moveSpeed, rb.velocity.y);
+    }
+
     public void Jump(InputAction.CallbackContext context){
         if(context.performed && rb.velocity.y == 0){
-            rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            if(isVertical){
+                rb.AddForce(Vector2.up * jumpHeight * extraJumpIntensity, ForceMode2D.Impulse);
+            } else{
+                rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            }
             onAir = true;
         }
     }
@@ -82,6 +101,22 @@ public class PlayerController : MonoBehaviour
             }
             isVertical = true;
         }
+    }
+
+    private void Dash(InputAction.CallbackContext context)
+    {
+        if(!isVertical){
+            isDashing = true;
+        }
+    }
+
+    private void ApplyDash(){
+        if(movingLeft){
+            rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
+        } else{
+            rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
+        }
+        isDashing = false;
     }
 
     private void ApplyGravity(){
