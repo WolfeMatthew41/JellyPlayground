@@ -275,14 +275,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5048044291900305375, guid: 5937ed043f09e8b4c94231e96a9ca2ed, type: 3}
-      propertyPath: dashIntensity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5048044291900305375, guid: 5937ed043f09e8b4c94231e96a9ca2ed, type: 3}
-      propertyPath: extraJumpIntensity
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5293856620448008824, guid: 5937ed043f09e8b4c94231e96a9ca2ed, type: 3}
       propertyPath: m_RootOrder
       value: 1
