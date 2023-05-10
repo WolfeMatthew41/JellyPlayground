@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private bool isVertical = false;
     private bool isDashing = false;
     private bool canDash = true;
+    private string currentAnim;
 
+    [SerializeField] private List<GameObject> detectors;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
@@ -91,21 +93,29 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Switch(InputAction.CallbackContext context){
+        if(!CanSwitch()) 
+            return;
+
         if(isVertical){
             anim.SetTrigger("SwitchHorizontal");
             isVertical = false;
         }else{
             if(movingLeft){
                 anim.SetTrigger("SwitchVerticalLeft");
+                currentAnim = "SwitchVerticalLeft";
             }else{
                 anim.SetTrigger("SwitchVerticalRight");
+                currentAnim = "SwitchVerticalRight";
             }
             isVertical = true;
         }
     }
 
-    private void Dash(InputAction.CallbackContext context)
-    {
+    private bool CanSwitch(){
+        return true;
+    }
+
+    private void Dash(InputAction.CallbackContext context){
         if(!isVertical && canDash){
             isDashing = true;
         }
