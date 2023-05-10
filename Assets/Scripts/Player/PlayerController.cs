@@ -18,13 +18,14 @@ public class PlayerController : MonoBehaviour
     private bool isColliding = false;
     private bool isVertical = false;
     private bool isDashing = false;
+    private bool canDash = true;
 
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
     [SerializeField] private float dashIntensity = 5f;
     [SerializeField] private float extraJumpIntensity = 2f;
-
+    [SerializeField] private float dashCooldown = 1f;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
             ApplyMovement(inputVector);
         }
         if(isDashing){
-            ApplyDash();
+            StartCoroutine(ApplyDash());
         }
         
         ApplyGravity();
@@ -105,18 +106,21 @@ public class PlayerController : MonoBehaviour
 
     private void Dash(InputAction.CallbackContext context)
     {
-        if(!isVertical){
+        if(!isVertical && canDash){
             isDashing = true;
         }
     }
 
-    private void ApplyDash(){
+    private IEnumerator ApplyDash(){
+        canDash = false;
         if(movingLeft){
             rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
         } else{
             rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
         }
         isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
     private void ApplyGravity(){
