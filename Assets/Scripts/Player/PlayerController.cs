@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private string currentAnim;
 
-    [SerializeField] private List<GameObject> detectors;
+    [SerializeField] private GameObject verticalDetectorLeft;
+    [SerializeField] private GameObject verticalDetectorRight;
+    [SerializeField] private GameObject horizontalDetectorLeft;
+    [SerializeField] private GameObject horizontalDetectorRight;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
@@ -93,26 +96,26 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Switch(InputAction.CallbackContext context){
-        if(!CanSwitch()) 
-            return;
 
         if(isVertical){
+            if(currentAnim.Equals("SwitchVerticalLeft")){
+                if(!verticalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
+            } else if(currentAnim.Equals("SwitchVerticalRight"))
+                if(!verticalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
             anim.SetTrigger("SwitchHorizontal");
             isVertical = false;
         }else{
             if(movingLeft){
+                if(!horizontalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
                 anim.SetTrigger("SwitchVerticalLeft");
                 currentAnim = "SwitchVerticalLeft";
             }else{
+                if(!horizontalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
                 anim.SetTrigger("SwitchVerticalRight");
                 currentAnim = "SwitchVerticalRight";
             }
             isVertical = true;
         }
-    }
-
-    private bool CanSwitch(){
-        return true;
     }
 
     private void Dash(InputAction.CallbackContext context){
