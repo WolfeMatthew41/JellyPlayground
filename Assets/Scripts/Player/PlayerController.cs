@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Movement.performed += Move;
+        playerInputActions.Player.Movement.canceled += Idle;
         playerInputActions.Player.Switch.performed += Switch;
         playerInputActions.Player.Dash.performed += Dash;
     }
@@ -66,18 +67,26 @@ public class PlayerController : MonoBehaviour
 
     private void Move(InputAction.CallbackContext context)
     {
+        anim.SetBool("Moving", true);
         if(!(onAir && isColliding)){
             Vector2 inputVector = context.ReadValue<Vector2>();
             ApplyMovement(inputVector);
         }
-
+        
         if(rb.velocity.x > 0f){
             movingRight = true;
             movingLeft = false;
+            anim.Play("MovingRight");
         } else if(rb.velocity.x < 0f){
             movingLeft = true;
             movingRight = false;
+            anim.Play("MovingLeft");
         }
+    }
+
+    private void Idle(InputAction.CallbackContext context)
+    {
+        anim.SetBool("Moving", false);
     }
 
     private void ApplyMovement(Vector2 inputVector){

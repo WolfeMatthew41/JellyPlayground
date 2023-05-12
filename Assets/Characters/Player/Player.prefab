@@ -103,10 +103,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3326083968756653027}
-  - {fileID: 9151934112974967076}
   - {fileID: 7987144696114643397}
   - {fileID: 5985390333621718360}
+  - {fileID: 9151934112974967076}
+  - {fileID: 3326083968756653027}
   - {fileID: 5263900314737913236}
   - {fileID: 6939249717078482733}
   - {fileID: 6024197388976325102}
@@ -183,6 +183,7 @@ MonoBehaviour:
   dashIntensity: 150
   extraJumpIntensity: 1.5
   dashCooldown: 1
+  idleCooldown: 2
 --- !u!95 &2547214921282220914
 Animator:
   serializedVersion: 5
@@ -286,7 +287,7 @@ GameObject:
   - component: {fileID: 5985390333621718360}
   - component: {fileID: 4967859414901814422}
   m_Layer: 0
-  m_Name: Blocks_01_256x256_Alt_01_006
+  m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -300,12 +301,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3864806251377400347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5293856620448008824}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4967859414901814422
 SpriteRenderer:
@@ -348,7 +349,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1ca36f020a7bbe4996dc758cff8a01b, type: 3}
+  m_Sprite: {fileID: 1359344512, guid: ddc6a7f67dfafd9488c7acda9e336142, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -441,7 +442,7 @@ GameObject:
   - component: {fileID: 7987144696114643397}
   - component: {fileID: 41086630745913847}
   m_Layer: 0
-  m_Name: Blocks_01_256x256_Alt_01_005
+  m_Name: Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,12 +456,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5839923098239800873}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5293856620448008824}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &41086630745913847
 SpriteRenderer:
@@ -503,7 +504,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 875ee21d98c07244c8f6206e3735c025, type: 3}
+  m_Sprite: {fileID: 725434661, guid: 25ed79302788586468e6728a75c8abc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -525,7 +526,7 @@ GameObject:
   - component: {fileID: 3326083968756653027}
   - component: {fileID: 6261083886967404004}
   m_Layer: 0
-  m_Name: Blocks_01_256x256_Alt_01_002
+  m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,12 +540,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6276161081295918649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5293856620448008824}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6261083886967404004
 SpriteRenderer:
@@ -587,7 +588,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 12e223c09401ff54192096f5ff41c077, type: 3}
+  m_Sprite: {fileID: -1948783848, guid: 575f5c03192097046bcd74468da2dafa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -680,7 +681,7 @@ GameObject:
   - component: {fileID: 9151934112974967076}
   - component: {fileID: 2194755925296519671}
   m_Layer: 0
-  m_Name: Blocks_01_256x256_Alt_01_004
+  m_Name: Violet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -694,12 +695,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8614082670620717992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5293856620448008824}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2194755925296519671
 SpriteRenderer:
@@ -742,7 +743,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4abcb5c23b5d3b544af99e73406db693, type: 3}
+  m_Sprite: {fileID: -45282270, guid: 6646a485363314e43a69b7a545221521, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
