@@ -7,8 +7,9 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject pauseBtn;
+    [SerializeField] private TMP_Text coinsText;
 
-    private UIManager Instance;
+    private static UIManager Instance;
 
     private void Awake() {
         if(Instance != null){
@@ -17,7 +18,11 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    public UIManager GetInstance(){
+    private void Start() {
+        coinsText.text = "Coins: " + DataManager.GetInstance().GetCoins().ToString();
+    }
+
+    public static UIManager GetInstance(){
         return Instance;
     }
 
@@ -25,5 +30,9 @@ public class UIManager : MonoBehaviour
         if(pauseBtn.GetComponentInChildren<TMP_Text>().text.Equals("Pause")){
             pauseBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
         }
+    }
+
+    public void UpdateUI(){
+        coinsText.text = "Coins: " + DataManager.GetInstance().GetCoins().ToString();
     }
 }
