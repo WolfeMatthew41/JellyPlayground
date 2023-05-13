@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         playerInputActions = new PlayerInputActions();
 
-
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Movement.performed += Move;
@@ -197,5 +196,9 @@ public class PlayerController : MonoBehaviour
     public int getCoins()
     {
         return coinsCollected;
+    }
+
+    public PlayerInputActions GetPlayerInputActions(){
+        return playerInputActions;
     }
 }
