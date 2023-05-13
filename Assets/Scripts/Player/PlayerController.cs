@@ -78,11 +78,19 @@ public class PlayerController : MonoBehaviour
         if(rb.velocity.x > 0f){
             movingRight = true;
             movingLeft = false;
-            anim.Play("MovingRight");
+            if(!isVertical){
+                anim.Play("MovingRight");
+            }else{
+                anim.Play("MovingVerticalRight");
+            }
         } else if(rb.velocity.x < 0f){
             movingLeft = true;
             movingRight = false;
-            anim.Play("MovingLeft");
+            if(!isVertical){
+                anim.Play("MovingLeft");
+            }else{
+                anim.Play("MovingVerticalLeft");
+            }
         }
     }
 
@@ -107,7 +115,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Switch(InputAction.CallbackContext context){
-
+        Debug.Log("Switch");
         if(isVertical){
             if(currentAnim.Equals("SwitchVerticalLeft")){
                 if(!verticalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
@@ -118,13 +126,12 @@ public class PlayerController : MonoBehaviour
         }else{
             if(movingLeft){
                 if(!horizontalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
-                anim.SetTrigger("SwitchVerticalLeft");
                 currentAnim = "SwitchVerticalLeft";
             }else{
                 if(!horizontalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
-                anim.SetTrigger("SwitchVerticalRight");
                 currentAnim = "SwitchVerticalRight";
             }
+            anim.SetTrigger("SwitchVertical");
             isVertical = true;
         }
     }
