@@ -18,16 +18,21 @@ public class PlayerController : MonoBehaviour
     private bool isColliding = false;
     private bool isVertical = false;
     private bool isDashing = false;
-    private bool canDash = true;
+    private bool dashCooldownOver = true;
 
     private string currentAnim;
     private int coinsCollected;
 
+    [Header("References")]
+    [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject verticalDetectorLeft;
     [SerializeField] private GameObject verticalDetectorRight;
     [SerializeField] private GameObject horizontalDetectorLeft;
     [SerializeField] private GameObject horizontalDetectorRight;
-    [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject dashDetectorLeft;
+    [SerializeField] private GameObject dashDetectorRight;
+
+    [Header("Adjustable gameplay values")]
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
@@ -137,16 +142,16 @@ public class PlayerController : MonoBehaviour
     private void Switch(InputAction.CallbackContext context){
         if(isVertical){
             if(currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("MovingVerticalLeft")){
-                if(!verticalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
+                if(!verticalDetectorLeft.GetComponent<Detector>().NotColliding()) return;
             } else if(currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("MovingVerticalRight"))
-                if(!verticalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
+                if(!verticalDetectorRight.GetComponent<Detector>().NotColliding()) return;
             anim.SetTrigger("SwitchHorizontal");
             isVertical = false;
         }else{
             if(movingLeft){
-                if(!horizontalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
+                if(!horizontalDetectorLeft.GetComponent<Detector>().NotColliding()) return;
             }else{
-                if(!horizontalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
+                if(!horizontalDetectorRight.GetComponent<Detector>().NotColliding()) return;
             }
             anim.SetTrigger("SwitchVertical");
             isVertical = true;
@@ -154,21 +159,23 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dash(InputAction.CallbackContext context){
-        if(!isVertical && canDash){
+        if(!isVertical && dashCooldownOver){
             isDashing = true;
         }
     }
 
     private IEnumerator ApplyDash(){
-        canDash = false;
+        dashCooldownOver = false;
         if(movingLeft){
-            rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
+            if(dashDetectorLeft.GetComponent<Detector>().NotColliding())
+                rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
         } else{
-            rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
+            if(dashDetectorRight.GetComponent<Detector>().NotColliding())
+                rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
         }
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+        dashCooldownOver = true;
     }
 
     private void ApplyGravity(){
