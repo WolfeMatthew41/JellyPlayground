@@ -14,7 +14,7 @@ public class Detector : MonoBehaviour
         overlaps--;
     }
 
-    public bool CanSwitch()
+    public bool NotColliding()
     {
         return overlaps <= 0;
     }
