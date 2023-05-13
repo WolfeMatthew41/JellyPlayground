@@ -3047,8 +3047,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startAtZero: 0
-  _level: 0
-  _coins: 0
 --- !u!1001 &830493029
 PrefabInstance:
   m_ObjectHideFlags: 0
