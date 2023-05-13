@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private bool dashCooldownOver = true;
 
     private string currentAnim;
-    private int coinsCollected;
 
     [Header("References")]
     [SerializeField] private GameObject playerCamera;
@@ -182,20 +181,6 @@ public class PlayerController : MonoBehaviour
         if(onAir){
             rb.AddForce(new Vector2(0, -1f * gravityValue * Time.deltaTime), ForceMode2D.Force);
         }
-    }
-
-    // Though this method is called "addCoins" and the parameter is "addend" a negative number
-    // can be passed in for subtraction purposes.
-    public void addCoins(int addend)
-    {
-        coinsCollected += addend;
-    }
-
-    // This method gets the amount of coins the player has. 
-    // These methods exist in the player so the coins can be passed from scene to scene.
-    public int getCoins()
-    {
-        return coinsCollected;
     }
 
     public PlayerInputActions GetPlayerInputActions(){
