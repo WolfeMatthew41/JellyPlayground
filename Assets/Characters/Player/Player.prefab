@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 2547214921282220914}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   verticalDetectorRight: {fileID: 7282954458180247427}
   horizontalDetectorLeft: {fileID: 935064429634693564}
   horizontalDetectorRight: {fileID: 4856263323732169009}
+  playerCamera: {fileID: 6723993024469031737}
   jumpHeight: 9
   moveSpeed: 5
   gravityValue: 500

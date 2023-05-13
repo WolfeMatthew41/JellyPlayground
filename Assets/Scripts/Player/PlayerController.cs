@@ -19,14 +19,15 @@ public class PlayerController : MonoBehaviour
     private bool isVertical = false;
     private bool isDashing = false;
     private bool canDash = true;
-    private string currentAnim;
 
+    private string currentAnim;
     private int coinsCollected;
 
     [SerializeField] private GameObject verticalDetectorLeft;
     [SerializeField] private GameObject verticalDetectorRight;
     [SerializeField] private GameObject horizontalDetectorLeft;
     [SerializeField] private GameObject horizontalDetectorRight;
+    [SerializeField] private GameObject playerCamera;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float gravityValue = 500f;
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         anim = GetComponent<Animator>();
         playerInputActions = new PlayerInputActions();
+
+
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Movement.performed += Move;
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
         }
         
         ApplyGravity();
+        currentAnim = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
     }
 
     private void Move(InputAction.CallbackContext context)
@@ -78,11 +82,35 @@ public class PlayerController : MonoBehaviour
         if(rb.velocity.x > 0f){
             movingRight = true;
             movingLeft = false;
-            anim.Play("MovingRight");
+            if(!isVertical){
+                anim.Play("MovingRight");
+            }else{
+                anim.Play("MovingVerticalRight");
+                OffsetMovementRight();
+            }
         } else if(rb.velocity.x < 0f){
             movingLeft = true;
             movingRight = false;
-            anim.Play("MovingLeft");
+            if(!isVertical){
+                anim.Play("MovingLeft");
+            }else{
+                anim.Play("MovingVerticalLeft");
+                OffsetMovementLeft();
+            }
+        }
+    }
+
+    private void OffsetMovementRight(){
+        if(currentAnim.Equals("MovingVerticalLeft") || currentAnim.Equals("IdleVerticalLeft")){
+            transform.position = new Vector2(transform.position.x - 3f, transform.position.y);
+            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
+        }
+    }
+
+    private void OffsetMovementLeft(){
+        if(currentAnim.Equals("MovingVerticalRight") || currentAnim.Equals("IdleVerticalRight")){
+            transform.position = new Vector2(transform.position.x + 3f, transform.position.y);
+            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x - 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 
@@ -107,24 +135,20 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Switch(InputAction.CallbackContext context){
-
         if(isVertical){
-            if(currentAnim.Equals("SwitchVerticalLeft")){
+            if(currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("MovingVerticalLeft")){
                 if(!verticalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
-            } else if(currentAnim.Equals("SwitchVerticalRight"))
+            } else if(currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("MovingVerticalRight"))
                 if(!verticalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
             anim.SetTrigger("SwitchHorizontal");
             isVertical = false;
         }else{
             if(movingLeft){
                 if(!horizontalDetectorLeft.GetComponent<Detector>().CanSwitch()) return;
-                anim.SetTrigger("SwitchVerticalLeft");
-                currentAnim = "SwitchVerticalLeft";
             }else{
                 if(!horizontalDetectorRight.GetComponent<Detector>().CanSwitch()) return;
-                anim.SetTrigger("SwitchVerticalRight");
-                currentAnim = "SwitchVerticalRight";
             }
+            anim.SetTrigger("SwitchVertical");
             isVertical = true;
         }
     }
