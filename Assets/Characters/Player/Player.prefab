@@ -178,7 +178,7 @@ MonoBehaviour:
   verticalDetectorRight: {fileID: 7282954458180247427}
   horizontalDetectorLeft: {fileID: 935064429634693564}
   horizontalDetectorRight: {fileID: 4856263323732169009}
-  jumpHeight: 8
+  jumpHeight: 9
   moveSpeed: 5
   gravityValue: 500
   dashIntensity: 150
