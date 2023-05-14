@@ -235,9 +235,6 @@ public class PlayerController : MonoBehaviour
     {
         isRiding = ride;
     }
-
-    public PlayerInputActions GetPlayerInputActions(){
-        return playerInputActions;
   
     private void JellyDashAnimation() 
     {
