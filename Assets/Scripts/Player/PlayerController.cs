@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,8 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool isRiding = false;
 
     private string currentAnim;
-
     private int coinsCollected;
+
 
     [Header("References")]
     [SerializeField] private GameObject playerCamera;
@@ -42,6 +44,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashIntensity = 5f;
     [SerializeField] private float extraJumpIntensity = 2f;
     [SerializeField] private float dashCooldown = 1f;
+
+    [SerializeField] private float jellyDashOffset = 0.5f;
+    [SerializeField] private GameObject jellyDashRight;
+    [SerializeField] private GameObject jellyDashLeft;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -187,11 +193,17 @@ public class PlayerController : MonoBehaviour
     private IEnumerator ApplyDash(){
         dashCooldownOver = false;
         if(movingLeft){
-            if(dashDetectorLeft.GetComponent<Detector>().NotColliding())
+            if (dashDetectorLeft.GetComponent<Detector>().NotColliding())
+            {
+                JellyDashAnimation();
                 rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
+            }
         } else{
-            if(dashDetectorRight.GetComponent<Detector>().NotColliding())
+            if (dashDetectorRight.GetComponent<Detector>().NotColliding())
+            {
+                JellyDashAnimation();
                 rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
+            }
         }
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
@@ -205,18 +217,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Though this method is called "addCoins" and the parameter is "addend" a negative number
-    // can be passed in for subtraction purposes.
-    public void addCoins(int addend)
-    {
-        coinsCollected += addend;
-    }
-
-    // This method gets the amount of coins the player has. 
-    // These methods exist in the player so the coins can be passed from scene to scene.
-    public int getCoins()
-    {
-        return coinsCollected;
+    public PlayerInputActions GetPlayerInputActions(){
+        return playerInputActions;
     }
 
     public bool getVertical()
@@ -236,6 +238,28 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInputActions GetPlayerInputActions(){
         return playerInputActions;
+  
+    private void JellyDashAnimation() 
+    {
+        if (movingRight)
+        {
+            Vector3 playerPos = transform.position;
+            Instantiate(jellyDashRight, playerPos, Quaternion.identity);
+            playerPos.x += jellyDashOffset;
+            Instantiate(jellyDashRight, playerPos, Quaternion.identity);
+            playerPos.x += jellyDashOffset;
+            Instantiate(jellyDashRight, playerPos, Quaternion.identity);
+        }
+        else 
+        {
+            Vector3 playerPos = transform.position;
+            Instantiate(jellyDashLeft, playerPos, Quaternion.identity);
+            playerPos.x -= jellyDashOffset;
+            Instantiate(jellyDashLeft, playerPos, Quaternion.identity);
+            playerPos.x -= jellyDashOffset;
+            Instantiate(jellyDashLeft, playerPos, Quaternion.identity);
+        }
+
     }
 
   

@@ -7,11 +7,13 @@ public class Detector : MonoBehaviour
     private int overlaps;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        overlaps++;
+        if(!other.isTrigger)
+            overlaps++;
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        overlaps--;
+        if(!other.isTrigger)
+            overlaps--;
     }
 
     public bool NotColliding()
