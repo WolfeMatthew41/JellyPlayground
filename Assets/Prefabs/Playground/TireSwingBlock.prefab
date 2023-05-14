@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 963087396616941903}
   - component: {fileID: 1431425128210817127}
+  - component: {fileID: 2412097011815336055}
   m_Layer: 0
   m_Name: TireSwingBlock
-  m_TagString: Impassable
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +60,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.55}
   m_EdgeRadius: 0
+--- !u!114 &2412097011815336055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2735774020477031785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93ce749a13bb414fb9793877565394a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointStart: {fileID: 0}
+  waypointEnd: {fileID: 0}
+  movingToEnd: 1
+  rideWithPlatform: 1
+  speed: 3
 --- !u!1 &7904992098199867756
 GameObject:
   m_ObjectHideFlags: 0
