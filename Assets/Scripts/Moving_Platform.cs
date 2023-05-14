@@ -19,11 +19,14 @@ public class Moving_Platform : MonoBehaviour
     private Transform player;
     private PlayerController playerController;
 
+    private float platformWidth;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         playerController = player.GetComponent<PlayerController>();
+        platformWidth = GetComponent<BoxCollider2D>().size.x;
     }
 
     // Update is called once per frame
@@ -69,7 +72,10 @@ public class Moving_Platform : MonoBehaviour
         {
             if (collision.transform.tag == "Player")
             {
-                if (player.position.y> this.transform.position.y)
+                // This if statement checks to make sure the Player is above the platform AND the Player's position
+                // doesn't exceed the platform's width.
+                if (player.position.y > this.transform.position.y && player.position.x > this.transform.position.x && 
+                    player.position.x < (this.transform.position.x + platformWidth))
                 {
                     playerController.setRiding(true);
                     player.transform.parent = this.transform;
