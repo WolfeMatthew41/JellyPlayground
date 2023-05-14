@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    private GameObject player;
+    [SerializeField]
+    private Transform respawnPoint;
+    [SerializeField]
+    private Transform checkpoint;
+    [SerializeField]
+    private bool useCheckpoint = false;
+    
+    private Transform player;
+    private Vector3 cameraPositionRespawn;
+    private Vector3 cameraPositionCheckpoint;
     private Camera camera;
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponentInChildren<Camera>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        camera = player.GetComponentInChildren<Camera>();
+        cameraPositionRespawn = camera.transform.position;
+        cameraPositionCheckpoint = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -18,10 +30,24 @@ public class Respawn : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         camera.transform.parent = null;
-        collision.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
+
+        if (!useCheckpoint)
+        {
+            player.gameObject.transform.position = respawnPoint.position;
+            camera.transform.position = cameraPositionRespawn;
+        } else
+        {
+            player.gameObject.transform.position = checkpoint.position;
+            camera.transform.position = cameraPositionCheckpoint;
+        }
+
+        player.gameObject.SetActive(true);
+        camera.transform.parent = player;
+
     }
 }
