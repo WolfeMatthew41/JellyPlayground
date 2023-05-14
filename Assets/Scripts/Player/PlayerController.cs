@@ -116,7 +116,10 @@ public class PlayerController : MonoBehaviour
             if(!isVertical){
                 anim.Play("MovingRight");
             }else{
-                anim.Play("MovingVerticalRight");
+                if(currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("MovingVerticalLeft"))
+                    anim.Play("MovingExtraRight");
+                else
+                    anim.Play("MovingVerticalRight");
                 OffsetMovementRight();
             }
         } else if(rb.velocity.x < 0f){
@@ -125,21 +128,24 @@ public class PlayerController : MonoBehaviour
             if(!isVertical){
                 anim.Play("MovingLeft");
             }else{
-                anim.Play("MovingVerticalLeft");
+                if(currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("MovingVerticalRight"))
+                    anim.Play("MovingExtraLeft");
+                else
+                    anim.Play("MovingVerticalLeft");
                 OffsetMovementLeft();
             }
         }
     }
 
     private void OffsetMovementRight(){
-        if(currentAnim.Equals("MovingVerticalLeft") || currentAnim.Equals("IdleVerticalLeft")){
+        if(currentAnim.Equals("MovingVerticalLeft") || currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("IdleExtraLeft") || currentAnim.Equals("MovingExtraLeft")){
             transform.position = new Vector2(transform.position.x - 3f, transform.position.y);
             playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 
     private void OffsetMovementLeft(){
-        if(currentAnim.Equals("MovingVerticalRight") || currentAnim.Equals("IdleVerticalRight")){
+        if(currentAnim.Equals("MovingVerticalRight") || currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("IdleExtraRight") || currentAnim.Equals("MovingExtraRight")){
             transform.position = new Vector2(transform.position.x + 3f, transform.position.y);
             playerCamera.transform.position = new Vector3(playerCamera.transform.position.x - 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
