@@ -18,8 +18,11 @@ public class GameManager : MonoBehaviour
     public void PressPauseButton(){
         if(Time.timeScale == 0f){
             Time.timeScale = 1f;
+            playerInputActions.Player.Enable();
         }else{
             Time.timeScale = 0f;
+            playerInputActions.Player.Disable();
+            playerInputActions.Player.Pause.Enable();
         }
         UIManager.GetInstance().PressPauseButton();
     }

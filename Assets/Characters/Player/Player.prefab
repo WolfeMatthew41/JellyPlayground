@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7487957696621599805}
   m_Layer: 0
   m_Name: HDetectorL
-  m_TagString: Untagged
+  m_TagString: Crush_Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 1815208676483370670}
   m_Layer: 0
   m_Name: HDetectorR
-  m_TagString: Untagged
+  m_TagString: Crush_Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

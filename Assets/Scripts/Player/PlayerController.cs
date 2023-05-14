@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private PlayerInput playerInput;
     private PlayerInputActions playerInputActions;
+    private Moving_Platform movingPlatform;
 
     private bool onAir = false;
     private bool movingRight = false;
@@ -21,8 +22,11 @@ public class PlayerController : MonoBehaviour
     private bool isVertical = false;
     private bool isDashing = false;
     private bool dashCooldownOver = true;
+    private bool isRiding = false;
 
     private string currentAnim;
+    private int coinsCollected;
+
 
     [Header("References")]
     [SerializeField] private GameObject playerCamera;
@@ -61,6 +65,24 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         isColliding = true;
+
+        if (other.transform.tag == "MovingPlatform")
+        {
+            movingPlatform = other.gameObject.GetComponent<Moving_Platform>();
+        }
+
+        // If player is riding a platform, and with another platform, and is vertical, go into horizontal mode.
+        if (other.transform.tag == "Impassable" && isRiding && isVertical)
+        {
+            anim.SetTrigger("SwitchHorizontal");
+            isVertical = false;
+        }
+        // If player is riding  a platform, collides with another platform, and isn't vertical, reverse direction
+        // of the moving platform.
+        else if (other.transform.tag == "Impassable" && isRiding && !isVertical)
+        {
+            movingPlatform.setMovingToEnd(false);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
@@ -94,7 +116,10 @@ public class PlayerController : MonoBehaviour
             if(!isVertical){
                 anim.Play("MovingRight");
             }else{
-                anim.Play("MovingVerticalRight");
+                if(currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("MovingVerticalLeft"))
+                    anim.Play("MovingExtraRight");
+                else
+                    anim.Play("MovingVerticalRight");
                 OffsetMovementRight();
             }
         } else if(rb.velocity.x < 0f){
@@ -103,21 +128,24 @@ public class PlayerController : MonoBehaviour
             if(!isVertical){
                 anim.Play("MovingLeft");
             }else{
-                anim.Play("MovingVerticalLeft");
+                if(currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("MovingVerticalRight"))
+                    anim.Play("MovingExtraLeft");
+                else
+                    anim.Play("MovingVerticalLeft");
                 OffsetMovementLeft();
             }
         }
     }
 
     private void OffsetMovementRight(){
-        if(currentAnim.Equals("MovingVerticalLeft") || currentAnim.Equals("IdleVerticalLeft")){
+        if(currentAnim.Equals("MovingVerticalLeft") || currentAnim.Equals("IdleVerticalLeft") || currentAnim.Equals("IdleExtraLeft") || currentAnim.Equals("MovingExtraLeft")){
             transform.position = new Vector2(transform.position.x - 3f, transform.position.y);
             playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 
     private void OffsetMovementLeft(){
-        if(currentAnim.Equals("MovingVerticalRight") || currentAnim.Equals("IdleVerticalRight")){
+        if(currentAnim.Equals("MovingVerticalRight") || currentAnim.Equals("IdleVerticalRight") || currentAnim.Equals("IdleExtraRight") || currentAnim.Equals("MovingExtraRight")){
             transform.position = new Vector2(transform.position.x + 3f, transform.position.y);
             playerCamera.transform.position = new Vector3(playerCamera.transform.position.x - 3f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
@@ -199,6 +227,21 @@ public class PlayerController : MonoBehaviour
         return playerInputActions;
     }
 
+    public bool getVertical()
+    {
+        return isVertical;
+    }
+
+    public bool getRiding()
+    {
+        return isRiding;
+    }
+
+    public void setRiding(bool ride)
+    {
+        isRiding = ride;
+    }
+  
     private void JellyDashAnimation() 
     {
         if (movingRight)
@@ -219,5 +262,8 @@ public class PlayerController : MonoBehaviour
             playerPos.x -= jellyDashOffset;
             Instantiate(jellyDashLeft, playerPos, Quaternion.identity);
         }
+
     }
+
+  
 }

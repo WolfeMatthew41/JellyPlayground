@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 3760244190403236839}
   m_Layer: 0
   m_Name: Moving_Platform
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,9 +302,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointStart: {fileID: 0}
-  waypointMid: {fileID: 0}
   waypointEnd: {fileID: 0}
   movingToEnd: 1
+  rideWithPlatform: 1
   speed: 3
 --- !u!61 &3760244190403236839
 BoxCollider2D:
