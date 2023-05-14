@@ -189,6 +189,9 @@ MonoBehaviour:
   dashIntensity: 150
   extraJumpIntensity: 1.5
   dashCooldown: 1
+  jellyDashOffset: 0.5
+  jellyDashRight: {fileID: 5466544926244134244, guid: 0aefb783f368a074c9127d25ddbcac94, type: 3}
+  jellyDashLeft: {fileID: 3105111008215462432, guid: b4a7d67916c42864c8b128417c443217, type: 3}
 --- !u!95 &2547214921282220914
 Animator:
   serializedVersion: 5
