@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coins_Text
+  - Crush_Detector
+  - Impassable
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
