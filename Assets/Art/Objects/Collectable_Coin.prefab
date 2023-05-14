@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8345843596056193913}
   - component: {fileID: 8345843596056193912}
   - component: {fileID: 8345843596056193915}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Collectable_Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8345843596056193914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.11, y: -4.78, z: 0}
+  m_LocalPosition: {x: -16.11, y: -4.78, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8345843596076501593}
   - component: {fileID: 8345843596076501606}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}

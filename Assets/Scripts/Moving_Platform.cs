@@ -17,11 +17,13 @@ public class Moving_Platform : MonoBehaviour
     private float speed = 3.0f;
 
     private Transform player;
+    private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -53,13 +55,25 @@ public class Moving_Platform : MonoBehaviour
 
     // If we opt for the player to ride with the platform, these will detect if the player is riding the platform, and parent the player
     // to the platform, and when they get off, unparent the player.
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        // This will make the platform not crush the player, forcing it off the stage by checking if the player is below the platform.
+        if (collision.transform.tag == "Player" && player.position.y < this.transform.position.y)
+        {
+            movingToEnd = !movingToEnd;
+        }
+
+        // This, additionally, communicates with the PlayerController script to set the isRiding variable, so 
+        // we can check for crushing if the player is riding atop the platform, and it crushes.
         if (rideWithPlatform)
         {
             if (collision.transform.tag == "Player")
             {
-                player.transform.parent = this.transform;
+                if (player.position.y> this.transform.position.y)
+                {
+                    playerController.setRiding(true);
+                    player.transform.parent = this.transform;
+                }
             }
         }
     }
@@ -68,7 +82,17 @@ public class Moving_Platform : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
+            playerController.setRiding(false);
             player.transform.parent = null;
         }
+    }
+
+    public bool getMovingToEnd()
+    {
+        return movingToEnd;
+    }
+    public void setMovingToEnd(bool mte)
+    {
+        movingToEnd = mte;
     }
 }
