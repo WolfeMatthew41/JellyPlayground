@@ -241,6 +241,10 @@ public class PlayerController : MonoBehaviour
     {
         isRiding = ride;
     }
+
+    public float GetDashIntensity(){
+        return dashIntensity;
+    }
   
     private void JellyDashAnimation() 
     {
