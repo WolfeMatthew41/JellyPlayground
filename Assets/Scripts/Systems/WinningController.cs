@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class WinningController : MonoBehaviour
 {
+    private bool playerHasWon;
+
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag.Equals("Player")){
+        if(!playerHasWon && other.gameObject.tag.Equals("Player")){
             DataManager.GetInstance().AddLevel();
+            playerHasWon = true;
         }
     }
 }
