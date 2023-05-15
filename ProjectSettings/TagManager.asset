@@ -9,6 +9,7 @@ TagManager:
   - Impassable
   - MovingPlatform
   - Seesaw
+  - Camera
   layers:
   - Default
   - TransparentFX
