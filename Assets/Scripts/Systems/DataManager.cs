@@ -23,11 +23,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SetCurrentLevel(int level){
-        _level = level;
-        SaveLevel();
-    }
-
     public void SetCurrentCoins(int coins){
         _coins = coins;
         SaveCoins();
@@ -38,12 +33,28 @@ public class DataManager : MonoBehaviour
         SaveCoins();
     }
 
+    public void AddLevel(){
+        _level ++;
+        SaveLevel();
+    }
+
     public int GetCoins(){
         return _coins;
     }
 
+    public int GetCurrentLevel(){
+        return _level;
+    }
+
     public static DataManager GetInstance(){
         return Instance;
+    }
+
+    public void ResetData(){
+        _coins = 0;
+        _level = 0;
+        SaveCoins();
+        SaveLevel();
     }
 
     [System.Serializable]

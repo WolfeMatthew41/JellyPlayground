@@ -7,13 +7,16 @@ public class TitleScreen : MonoBehaviour
 {
     public void NewGame() 
     {
+        DataManager.GetInstance().ResetData();
         //This will load the next scene after the title screen which should be the playable stage
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ContinueGame() 
     { 
-        //Will probably need to use the save data to load here
+        if(DataManager.GetInstance().GetCurrentLevel() != 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 + DataManager.GetInstance().GetCurrentLevel());
+        }
     }
 
     public void QuitGame()
