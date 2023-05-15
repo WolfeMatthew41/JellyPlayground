@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool movingLeft = false;
     private bool isColliding = false;
     private bool isVertical = false;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool dashCooldownOver = true;
     private bool isRiding = false;
 
@@ -82,6 +82,10 @@ public class PlayerController : MonoBehaviour
         else if (other.transform.tag == "Impassable" && isRiding && !isVertical)
         {
             movingPlatform.setMovingToEnd(false);
+        }
+
+        if(isDashing && other.gameObject.tag.Equals("Breakable")){
+            other.gameObject.GetComponent<IBreakable>().Break();
         }
     }
 
@@ -211,9 +215,14 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
             }
         }
-        isDashing = false;
+        StartCoroutine(FinishDash());
         yield return new WaitForSeconds(dashCooldown);
         dashCooldownOver = true;
+    }
+
+    private IEnumerator FinishDash(){
+        yield return new WaitForSeconds(1f);
+        isDashing = false;
     }
 
     private void ApplyGravity(){

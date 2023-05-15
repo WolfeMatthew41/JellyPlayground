@@ -9,6 +9,7 @@ TagManager:
   - Impassable
   - MovingPlatform
   - Camera
+  - Breakable
   layers:
   - Default
   - TransparentFX
