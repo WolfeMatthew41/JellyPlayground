@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private Moving_Platform movingPlatform;
 
-    private bool onAir = false;
+    [SerializeField] private bool onAir = false;
     private bool movingRight = false;
     private bool movingLeft = false;
     private bool isColliding = false;
@@ -83,10 +83,32 @@ public class PlayerController : MonoBehaviour
         {
             movingPlatform.setMovingToEnd(false);
         }
+
+        if(other.transform.tag.Equals("Seesaw")){
+            // playerCamera.transform.parent = null;
+            rb.constraints = RigidbodyConstraints2D.None;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if(other.transform.tag.Equals("Seesaw")){
+            playerCamera.transform.rotation = Quaternion.identity;
+            if(isVertical)
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            else
+                rb.constraints = RigidbodyConstraints2D.None;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         isColliding = false;
+
+        if(other.transform.tag.Equals("Seesaw")){
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            transform.rotation = Quaternion.identity;
+            playerCamera.transform.rotation = Quaternion.identity;
+            // playerCamera.transform.parent = transform;
+        }
     }
 
     private void FixedUpdate() {
@@ -161,7 +183,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Jump(InputAction.CallbackContext context){
-        if(context.performed && rb.velocity.y == 0){
+        if(context.performed && !onAir){
             if(isVertical){
                 rb.AddForce(Vector2.up * jumpHeight * extraJumpIntensity, ForceMode2D.Impulse);
             } else{
@@ -217,7 +239,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ApplyGravity(){
-        onAir = rb.velocity.y != 0;
+        onAir = rb.velocity.y != 0 && !isColliding;
         if(onAir){
             rb.AddForce(new Vector2(0, -1f * gravityValue * Time.deltaTime), ForceMode2D.Force);
         }
