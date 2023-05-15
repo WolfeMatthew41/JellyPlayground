@@ -74,7 +74,7 @@ public class Moving_Platform : MonoBehaviour
             {
                 // This if statement checks to make sure the Player is above the platform AND the Player's position
                 // doesn't exceed the platform's width.
-                if (player.position.y > this.transform.position.y && player.position.x > this.transform.position.x && 
+                if (player.position.y > this.transform.position.y && player.position.x > this.transform.position.x - platformWidth && 
                     player.position.x < (this.transform.position.x + platformWidth))
                 {
                     playerController.setRiding(true);
