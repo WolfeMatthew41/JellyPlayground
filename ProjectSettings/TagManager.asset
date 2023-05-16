@@ -10,6 +10,7 @@ TagManager:
   - MovingPlatform
   - Seesaw
   - Camera
+  - Breakable
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2033392667
+    locked: 0
+  - name: BelowBlock
+    uniqueID: 3786761521
+    locked: 0
+  - name: BelowEffects
+    uniqueID: 3315290277
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: AboveBlock
+    uniqueID: 62183371
+    locked: 0
+  - name: AboveEffects
+    uniqueID: 3400324551
     locked: 0

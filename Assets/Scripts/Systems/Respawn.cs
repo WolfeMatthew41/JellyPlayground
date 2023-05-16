@@ -6,14 +6,13 @@ public class Respawn : MonoBehaviour
 {
     [SerializeField]
     private Transform firstRespawnPoint;
-    [SerializeField]
+    
     private bool useCheckpoint = false;
     
     private Transform player;
 
     private Vector3 cameraPositionRespawn;
     private Vector3 cameraPositionCheckpoint;
-
     private Vector3 checkpointPosition;
 
     private Camera camera;
