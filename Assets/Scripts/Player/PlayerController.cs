@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
             Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
             ApplyMovement(inputVector);
         }
-        if(isDashing){
+        if(isDashing && dashCooldownOver){
             StartCoroutine(ApplyDash());
         }
         
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dash(InputAction.CallbackContext context){
-        if(!isVertical && dashCooldownOver){
+        if(!isVertical && dashCooldownOver && !isDashing){
             isDashing = true;
         }
     }
@@ -207,15 +207,16 @@ public class PlayerController : MonoBehaviour
             {
                 JellyDashAnimation();
                 rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
+                StartCoroutine(FinishDash());
             }
         } else{
             if (dashDetectorRight.GetComponent<Detector>().NotColliding())
             {
                 JellyDashAnimation();
                 rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
+                StartCoroutine(FinishDash());
             }
         }
-        StartCoroutine(FinishDash());
         yield return new WaitForSeconds(dashCooldown);
         dashCooldownOver = true;
     }

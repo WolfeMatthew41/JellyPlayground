@@ -6,7 +6,7 @@ public class Detector : MonoBehaviour
 {
     private int overlaps;
     private bool isDashDetector;
-    public bool canBreak;
+    private bool canBreak;
 
     private void Start() {
         if(gameObject.name.Equals("DDetectorR") || gameObject.name.Equals("DDetectorL")){
