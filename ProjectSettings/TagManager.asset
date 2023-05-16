@@ -8,6 +8,7 @@ TagManager:
   - Crush_Detector
   - Impassable
   - MovingPlatform
+  - Seesaw
   - Camera
   - Breakable
   layers:
