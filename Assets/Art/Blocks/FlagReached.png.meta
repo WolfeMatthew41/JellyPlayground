@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd26a12e5ee3905449c2dc1c67ac6e06
+guid: 6716e50fd77785b4cbfa1ffd0b5a8e0d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 602
+  spritePixelsToUnits: 341
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CloudJelly_0
+      name: FlagReached_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 601
-        height: 601
+        x: 84
+        y: 0
+        width: 169
+        height: 329
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fcbab8ed2ea09429de563d0c5f098b
-      internalID: -1957690896
+      spriteID: e9ba3f75374480b40a3f525a3137f8af
+      internalID: 1814888718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CloudJelly_1
+      name: FlagReached_1
       rect:
         serializedVersion: 2
-        x: 601
-        y: 1
-        width: 601
-        height: 601
+        x: 411
+        y: 0
+        width: 183
+        height: 329
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b87d5cae6c3e17348930de7c934313a0
-      internalID: -1029295760
+      spriteID: 583588b3810cffa4c9b507557b42fdc9
+      internalID: 1010260466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CloudJelly_2
+      name: FlagReached_2
       rect:
         serializedVersion: 2
-        x: 1202
-        y: 1
-        width: 601
-        height: 601
+        x: 738
+        y: 0
+        width: 197
+        height: 329
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a28024752bce413409568220bdae4dc7
-      internalID: 236748827
+      spriteID: 35bb05fe6df767b43aeed6798410139d
+      internalID: -206481858
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CloudJelly_0: -1957690896
-      CloudJelly_1: -1029295760
-      CloudJelly_2: 236748827
+      FlagReached_0: 1814888718
+      FlagReached_1: 1010260466
+      FlagReached_2: -206481858
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

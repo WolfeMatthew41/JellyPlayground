@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd26a12e5ee3905449c2dc1c67ac6e06
+guid: 99755de6fc2b74d4c948eb89349148eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,70 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: CloudJelly_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1
-        width: 601
-        height: 601
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48fcbab8ed2ea09429de563d0c5f098b
-      internalID: -1957690896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CloudJelly_1
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 1
-        width: 601
-        height: 601
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b87d5cae6c3e17348930de7c934313a0
-      internalID: -1029295760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CloudJelly_2
-      rect:
-        serializedVersion: 2
-        x: 1202
-        y: 1
-        width: 601
-        height: 601
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a28024752bce413409568220bdae4dc7
-      internalID: 236748827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -189,10 +126,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      CloudJelly_0: -1957690896
-      CloudJelly_1: -1029295760
-      CloudJelly_2: 236748827
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
