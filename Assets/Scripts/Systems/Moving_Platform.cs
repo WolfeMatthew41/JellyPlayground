@@ -30,7 +30,7 @@ public class Moving_Platform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // If the moving platform is at the start waypoint and heading to the start waypoint, then make movingToEnd true.
         if (this.transform.position == waypointStart.transform.position && !movingToEnd)

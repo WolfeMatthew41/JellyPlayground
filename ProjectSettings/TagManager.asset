@@ -9,6 +9,7 @@ TagManager:
   - Impassable
   - MovingPlatform
   - Camera
+  - Water
   layers:
   - Default
   - TransparentFX
