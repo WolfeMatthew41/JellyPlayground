@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool movingLeft = false;
     private bool isColliding = false;
     private bool isVertical = false;
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool dashCooldownOver = true;
     private bool isRiding = false;
 
@@ -83,6 +83,10 @@ public class PlayerController : MonoBehaviour
         {
             movingPlatform.setMovingToEnd(false);
         }
+
+        if(isDashing && other.gameObject.tag.Equals("Breakable")){
+            other.gameObject.GetComponent<IBreakable>().Break();
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
@@ -94,7 +98,7 @@ public class PlayerController : MonoBehaviour
             Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
             ApplyMovement(inputVector);
         }
-        if(isDashing){
+        if(isDashing && dashCooldownOver){
             StartCoroutine(ApplyDash());
         }
         
@@ -191,7 +195,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dash(InputAction.CallbackContext context){
-        if(!isVertical && dashCooldownOver){
+        if(!isVertical && dashCooldownOver && !isDashing){
             isDashing = true;
         }
     }
@@ -203,17 +207,23 @@ public class PlayerController : MonoBehaviour
             {
                 JellyDashAnimation();
                 rb.AddForce(Vector2.left * dashIntensity, ForceMode2D.Impulse);
+                StartCoroutine(FinishDash());
             }
         } else{
             if (dashDetectorRight.GetComponent<Detector>().NotColliding())
             {
                 JellyDashAnimation();
                 rb.AddForce(Vector2.right * dashIntensity, ForceMode2D.Impulse);
+                StartCoroutine(FinishDash());
             }
         }
-        isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         dashCooldownOver = true;
+    }
+
+    private IEnumerator FinishDash(){
+        yield return new WaitForSeconds(1f);
+        isDashing = false;
     }
 
     private void ApplyGravity(){
