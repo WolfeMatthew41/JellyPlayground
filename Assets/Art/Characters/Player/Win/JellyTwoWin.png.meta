@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd26a12e5ee3905449c2dc1c67ac6e06
+guid: ff45482f97a7b534ca7246b7064cfa9a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 602
+  spritePixelsToUnits: 601
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CloudJelly_0
+      name: JellyTwoWin_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48fcbab8ed2ea09429de563d0c5f098b
-      internalID: -1957690896
+      spriteID: 06059fe909b201b4ea908eed6bbedbe5
+      internalID: 888092720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CloudJelly_1
+      name: JellyTwoWin_1
       rect:
         serializedVersion: 2
         x: 601
@@ -152,29 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b87d5cae6c3e17348930de7c934313a0
-      internalID: -1029295760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CloudJelly_2
-      rect:
-        serializedVersion: 2
-        x: 1202
-        y: 1
-        width: 601
-        height: 601
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a28024752bce413409568220bdae4dc7
-      internalID: 236748827
+      spriteID: 0bc9e08db7e5c2c449910ea98ce4e48b
+      internalID: 760405783
       vertices: []
       indices: 
       edges: []
@@ -190,9 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CloudJelly_0: -1957690896
-      CloudJelly_1: -1029295760
-      CloudJelly_2: 236748827
+      JellyTwoWin_0: 888092720
+      JellyTwoWin_1: 760405783
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
