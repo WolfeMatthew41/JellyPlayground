@@ -11,6 +11,8 @@ public class Water : MonoBehaviour
     private bool isVertical = false;
     private bool inWater = false;
 
+    [SerializeField] private float launchIntensity = 0.5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +28,7 @@ public class Water : MonoBehaviour
         //Debug.Log("Here Dog!");
         if (collision.transform.tag == "Player" && !isVertical && !inWater)
         {
-            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 0.5f), ForceMode2D.Impulse);
+            player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, launchIntensity), ForceMode2D.Impulse);
         }
     }
 
