@@ -120,10 +120,10 @@ TextureImporter:
       name: FlagReached_0
       rect:
         serializedVersion: 2
-        x: 84
+        x: 0
         y: 0
-        width: 169
-        height: 329
+        width: 341
+        height: 341
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: FlagReached_1
       rect:
         serializedVersion: 2
-        x: 411
+        x: 341
         y: 0
-        width: 183
-        height: 329
+        width: 341
+        height: 341
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: FlagReached_2
       rect:
         serializedVersion: 2
-        x: 738
+        x: 682
         y: 0
-        width: 197
-        height: 329
+        width: 341
+        height: 341
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
