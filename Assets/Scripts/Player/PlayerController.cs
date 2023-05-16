@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private Moving_Platform movingPlatform;
 
-    [SerializeField] private bool onAir = false;
+    private bool onAir = false;
     private bool movingRight = false;
     private bool movingLeft = false;
     private bool isColliding = false;
