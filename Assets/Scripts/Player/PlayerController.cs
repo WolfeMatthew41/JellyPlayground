@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool isDashing = false;
     private bool dashCooldownOver = true;
     private bool isRiding = false;
+    private bool inWater = false;
 
     private string currentAnim;
     private int coinsCollected;
@@ -273,6 +274,17 @@ public class PlayerController : MonoBehaviour
     {
         isRiding = ride;
     }
+
+    public bool getInWater()
+    {
+        return inWater;
+    }
+
+    public void setInWater(bool inWater)
+    {
+        this.inWater = inWater;
+    }
+
 
     public float GetDashIntensity(){
         return dashIntensity;
