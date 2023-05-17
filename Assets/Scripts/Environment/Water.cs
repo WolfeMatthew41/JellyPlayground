@@ -16,6 +16,7 @@ public class Water : MonoBehaviour
     
 
     [SerializeField] private float launchIntensity = 0.5f;
+    [SerializeField] GameObject splashSound;
 
 
     // Start is called before the first frame update
@@ -61,7 +62,7 @@ public class Water : MonoBehaviour
 
         if (collision.transform.tag == "Player" && !inWater)
         {
-
+            splashSound.GetComponent<AudioSource>().Play();
             if (collision.transform.tag == "Player" && !isVertical) //Single-File
             {
                 bCollider.enabled = true;
