@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 1814888718, guid: 6716e50fd77785b4cbfa1ffd0b5a8e0d, type: 3}
+  CheerSound: {fileID: 1632590338202232339, guid: b2a33a41664d4eb4796d37f0e57418f5, type: 3}
 --- !u!70 &6238493134988386700
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

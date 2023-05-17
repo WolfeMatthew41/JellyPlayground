@@ -14,6 +14,8 @@ public class Checkpoint : MonoBehaviour
 
     private Respawn respawnZone;
 
+    [SerializeField] private GameObject CheerSound;
+
     void Start()
     {
         anim = transform.GetComponent<Animator>();
@@ -29,6 +31,7 @@ public class Checkpoint : MonoBehaviour
             respawnZone.setCheckpointBool(true);
             DataManager.GetInstance().UpdateCheckPoint(gameObject);
             wasUsed = true;
+            CheerSound.GetComponent<AudioSource>().Play();
         }
     }
 }

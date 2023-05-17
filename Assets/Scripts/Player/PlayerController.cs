@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject jellyDashRight;
     [SerializeField] private GameObject jellyDashLeft;
 
+    [SerializeField] private GameObject JumpSound;
+    [SerializeField] private GameObject LandSound;
+    [SerializeField] private GameObject DashSound;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
@@ -194,6 +198,7 @@ public class PlayerController : MonoBehaviour
             } else{
                 rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
             }
+            JumpSound.GetComponent<AudioSource>().Play();
             onAir = true;
         }
     }
@@ -214,12 +219,14 @@ public class PlayerController : MonoBehaviour
             }
             anim.SetTrigger("SwitchVertical");
             isVertical = true;
+            LandSound.GetComponent<AudioSource>().Play();
         }
     }
 
     private void Dash(InputAction.CallbackContext context){
         if(!isVertical && dashCooldownOver && !isDashing){
             isDashing = true;
+            DashSound.GetComponent<AudioSource>().Play();
         }
     }
 

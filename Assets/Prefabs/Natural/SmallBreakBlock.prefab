@@ -132,6 +132,7 @@ MonoBehaviour:
   breakFXTwo: {fileID: 8918199383863515066, guid: c35d8cdb82c2f304f8cf4fb7fa80f0d4, type: 3}
   breakFXThree: {fileID: 8918199383863515066, guid: 3602e1a43d4929b43a54ccc71b464417, type: 3}
   currentLife: 0
+  BreakSound: {fileID: 1632590338202232339, guid: f67fb62d24c67db478213d99b2b926c7, type: 3}
 --- !u!1 &7904992098199867756
 GameObject:
   m_ObjectHideFlags: 0
