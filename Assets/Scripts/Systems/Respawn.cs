@@ -38,6 +38,10 @@ public class Respawn : MonoBehaviour
         player.gameObject.SetActive(true);
         camera.transform.parent = player;
         camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraZ);
+        GameObject.Find("Green").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Blue").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Violet").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Red").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
     }
 
     public void setCheckpointBool(bool isChecked)
