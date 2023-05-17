@@ -192,6 +192,9 @@ MonoBehaviour:
   jellyDashOffset: 0.5
   jellyDashRight: {fileID: 5466544926244134244, guid: 0aefb783f368a074c9127d25ddbcac94, type: 3}
   jellyDashLeft: {fileID: 3105111008215462432, guid: b4a7d67916c42864c8b128417c443217, type: 3}
+  JumpSound: {fileID: 1632590338202232339, guid: 592c3caa8283ec548b93f4bce9da0bdf, type: 3}
+  LandSound: {fileID: 1632590338202232339, guid: c791411b249da394588e44568ac450e5, type: 3}
+  DashSound: {fileID: 1632590338202232339, guid: 41e188d87b1fc9745be3143ad8b9c064, type: 3}
 --- !u!95 &2547214921282220914
 Animator:
   serializedVersion: 5

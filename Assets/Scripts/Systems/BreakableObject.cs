@@ -14,6 +14,8 @@ public class BreakableObject : MonoBehaviour, IBreakable
     public int currentLife;
     private Sprite currentSprite;
 
+    [SerializeField] private GameObject BreakSound;
+
     private void Start() {
         currentLife = lifeStages;
         currentSprite = stageSprites[0];
@@ -21,6 +23,7 @@ public class BreakableObject : MonoBehaviour, IBreakable
 
     public void Break()
     {
+        BreakSound.GetComponent<AudioSource>().Play();
         if(currentLife > 0){
             Debug.Log("Break");
             currentLife--;
