@@ -11,11 +11,14 @@ public class Collectable : MonoBehaviour
 
     private TMP_Text coinsText;
 
+    [SerializeField] private GameObject CheerSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Player")
         {
             gameObject.GetComponent<Animator>().Play("LostJellyHappy");
+            CheerSound.GetComponent<AudioSource>().Play();
         }
     }
 }

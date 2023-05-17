@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  CheerSound: {fileID: 1632590338202232339, guid: 752ee50f15491614c98538f7c0c660f9, type: 3}
 --- !u!212 &3532839595445684271
 SpriteRenderer:
   m_ObjectHideFlags: 0
