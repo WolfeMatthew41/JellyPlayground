@@ -19,27 +19,12 @@ public class DataManager : MonoBehaviour
 
         if(!_startAtZero){
             LoadLevel();
-            LoadCoins();
         }
-    }
-
-    public void SetCurrentCoins(int coins){
-        _coins = coins;
-        SaveCoins();
-    }
-
-    public void AddCoinValue(int value){
-        _coins += value;
-        SaveCoins();
     }
 
     public void AddLevel(){
         _level ++;
         SaveLevel();
-    }
-
-    public int GetCoins(){
-        return _coins;
     }
 
     public int GetCurrentLevel(){
@@ -51,9 +36,7 @@ public class DataManager : MonoBehaviour
     }
 
     public void ResetData(){
-        _coins = 0;
         _level = 0;
-        SaveCoins();
         SaveLevel();
     }
 
@@ -85,31 +68,9 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SaveCoins()
-    {
-        SaveData data = SaveRest();
-        data.coins = _coins;
-
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-    }
-
-    public void LoadCoins()
-    {
-        string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-            _coins = data.coins;
-        }
-    }
-
     private SaveData SaveRest(){
         SaveData d = new SaveData();
         d.level = _level;
-        d.coins = _coins;
         return d;
     }
 
