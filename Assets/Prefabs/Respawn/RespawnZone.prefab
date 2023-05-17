@@ -72,4 +72,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstRespawnPoint: {fileID: 0}
-  useCheckpoint: 0
+  cloudJelly: {fileID: 577726697689728266, guid: 78f72c71f0d6aa54583e07a83041e047, type: 3}
