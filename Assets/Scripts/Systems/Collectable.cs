@@ -15,7 +15,6 @@ public class Collectable : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            UIManager.GetInstance().UpdateUI();
             gameObject.GetComponent<Animator>().Play("LostJellyHappy");
         }
     }
