@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    private Vector2 firstRespawnPoint;
+
+    //private Vector2 firstRespawnPoint;
     private Vector2 respawnPoint;
+
+    [SerializeField]
+    private Transform firstRespawnPoint;
+
     
     private bool useCheckpoint = false;
 
@@ -23,7 +28,6 @@ public class Respawn : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        firstRespawnPoint = player.transform.position;
         camera = player.GetComponentInChildren<Camera>();
         cameraZ = camera.transform.position.z;
         //Debug.Log(player.transform.position);
@@ -71,9 +75,12 @@ public class Respawn : MonoBehaviour
         {
             //Debug.Log("HERE");
             //player.transform.position = firstRespawnPoint;
-            respawnPoint = firstRespawnPoint;
+            Vector2 pos= new Vector2(firstRespawnPoint.position.x, firstRespawnPoint.position.y);
+            respawnPoint = pos;
             //Debug.Log(player.transform.position);
             //Debug.Log(firstRespawnPoint);
+            //player.gameObject.transform.position = firstRespawnPoint.position;
+
         } else
         {
             //player.gameObject.transform.position = DataManager.GetInstance().GetCheckpoint().transform.position;
@@ -84,6 +91,11 @@ public class Respawn : MonoBehaviour
         //camera.transform.parent = player;
         //camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraZ);
         isRespawn = true;
+      
+        GameObject.Find("Green").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Blue").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Violet").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        GameObject.Find("Red").transform.localScale = new Vector3(0.6f, 0.6f, 1f);
     }
 
     public void setCheckpointBool(bool isChecked)
