@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private bool _startAtZero;
     private int _level;
-    private int _coins;
+    private GameObject _checkpoint;
 
     private void Awake()
     {
@@ -19,18 +19,7 @@ public class DataManager : MonoBehaviour
 
         if(!_startAtZero){
             LoadLevel();
-            LoadCoins();
         }
-    }
-
-    public void SetCurrentCoins(int coins){
-        _coins = coins;
-        SaveCoins();
-    }
-
-    public void AddCoinValue(int value){
-        _coins += value;
-        SaveCoins();
     }
 
     public void AddLevel(){
@@ -38,8 +27,13 @@ public class DataManager : MonoBehaviour
         SaveLevel();
     }
 
-    public int GetCoins(){
-        return _coins;
+    public void UpdateCheckPoint(GameObject checkpoint){
+        _checkpoint = checkpoint;
+        SaveCheckPoint();
+    }
+
+    public GameObject GetCheckpoint(){
+        return _checkpoint;
     }
 
     public int GetCurrentLevel(){
@@ -51,9 +45,7 @@ public class DataManager : MonoBehaviour
     }
 
     public void ResetData(){
-        _coins = 0;
         _level = 0;
-        SaveCoins();
         SaveLevel();
     }
 
@@ -61,7 +53,7 @@ public class DataManager : MonoBehaviour
     public class SaveData
     {
         public int level;
-        public int coins;
+        public GameObject checkpoint;
     }
 
     public void SaveLevel()
@@ -85,16 +77,16 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SaveCoins()
+    public void SaveCheckPoint()
     {
         SaveData data = SaveRest();
-        data.coins = _coins;
+        data.checkpoint = _checkpoint;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
-    public void LoadCoins()
+    public void LoadCheckPoint()
     {
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
@@ -102,14 +94,14 @@ public class DataManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            _coins = data.coins;
+            _checkpoint = data.checkpoint;
         }
     }
 
     private SaveData SaveRest(){
         SaveData d = new SaveData();
         d.level = _level;
-        d.coins = _coins;
+        d.checkpoint = _checkpoint;
         return d;
     }
 

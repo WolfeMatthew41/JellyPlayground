@@ -18,10 +18,6 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start() {
-        coinsText.text = "Coins: " + DataManager.GetInstance().GetCoins().ToString();
-    }
-
     public static UIManager GetInstance(){
         return Instance;
     }
@@ -30,9 +26,5 @@ public class UIManager : MonoBehaviour
         if(pauseBtn.GetComponentInChildren<TMP_Text>().text.Equals("Pause")){
             pauseBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
         }
-    }
-
-    public void UpdateUI(){
-        coinsText.text = "Coins: " + DataManager.GetInstance().GetCoins().ToString();
     }
 }

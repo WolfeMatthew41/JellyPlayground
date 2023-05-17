@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800a4cd18ced4814fa62692090aad2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDashing: 0
   playerCamera: {fileID: 6723993024469031737}
   verticalDetectorLeft: {fileID: 3066477548926040876}
   verticalDetectorRight: {fileID: 7282954458180247427}
@@ -704,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723993024469031737}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1700001, y: 2.4209852, z: -8.45}
+  m_LocalPosition: {x: 1.1700001, y: 0.87, z: -8.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -736,7 +737,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 116.7
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

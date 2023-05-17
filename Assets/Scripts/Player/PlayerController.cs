@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool movingLeft = false;
     private bool isColliding = false;
     private bool isVertical = false;
-    public bool isDashing = false;
+    private bool isDashing = false;
     private bool dashCooldownOver = true;
     private bool isRiding = false;
     private bool inWater = false;

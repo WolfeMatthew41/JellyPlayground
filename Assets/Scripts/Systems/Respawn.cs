@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    [SerializeField]
-    private Transform firstRespawnPoint;
+    private Vector2 firstRespawnPoint;
     
     private bool useCheckpoint = false;
     
     private Transform player;
 
-    private Vector3 cameraPositionRespawn;
-    private Vector3 cameraPositionCheckpoint;
-    private Vector3 checkpointPosition;
-
     private Camera camera;
+    private float cameraZ;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        firstRespawnPoint = player.transform.position;
         camera = player.GetComponentInChildren<Camera>();
-        cameraPositionRespawn = camera.transform.position;
-        cameraPositionCheckpoint = Vector3.zero;
-        checkpointPosition = Vector3.zero;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        cameraZ = camera.transform.position.z;
+        Debug.Log(player.transform.position);
+        Debug.Log(firstRespawnPoint);
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,23 +31,18 @@ public class Respawn : MonoBehaviour
 
         if (!useCheckpoint)
         {
-            player.gameObject.transform.position = firstRespawnPoint.position;
-            camera.transform.position = cameraPositionRespawn;
+            Debug.Log("HERE");
+            player.transform.position = firstRespawnPoint;
+            Debug.Log(player.transform.position);
+            Debug.Log(firstRespawnPoint);
         } else
         {
-            player.gameObject.transform.position = checkpointPosition;
-            camera.transform.position = cameraPositionCheckpoint;
+            player.gameObject.transform.position = DataManager.GetInstance().GetCheckpoint().transform.position;
         }
 
         player.gameObject.SetActive(true);
         camera.transform.parent = player;
-
-    }
-
-    public void storeCheckpointData(Vector3 playerRespawnPosition)
-    {
-        checkpointPosition = playerRespawnPosition;
-        cameraPositionCheckpoint = camera.transform.position;
+        camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, cameraZ);
     }
 
     public void setCheckpointBool(bool isChecked)
