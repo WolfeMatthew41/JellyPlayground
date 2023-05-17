@@ -5,11 +5,15 @@ using UnityEngine;
 public class Water : MonoBehaviour
 {
     private BoxCollider2D bCollider;
+    private BoxCollider2D cCollider;
 
     private PlayerController player;
 
     private bool isVertical = false;
     private bool inWater = false;
+
+    private bool currForm;
+    
 
     [SerializeField] private float launchIntensity = 0.5f;
 
@@ -19,6 +23,7 @@ public class Water : MonoBehaviour
     {
         bCollider = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        currForm = player.getVertical();
     }
 
 
@@ -29,6 +34,13 @@ public class Water : MonoBehaviour
         if (collision.transform.tag == "Player" && !isVertical && !inWater)
         {
             player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, launchIntensity), ForceMode2D.Impulse);
+        }
+
+        if (currForm != player.getVertical())
+        {
+            currForm = !currForm;
+            bCollider.enabled = false;
+            bCollider.enabled = true;
         }
     }
 
