@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800a4cd18ced4814fa62692090aad2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDashing: 0
   playerCamera: {fileID: 6723993024469031737}
   verticalDetectorLeft: {fileID: 3066477548926040876}
   verticalDetectorRight: {fileID: 7282954458180247427}
@@ -206,7 +205,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: d7625745bda1a8341a1f7e03f5b0dc55, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
