@@ -9,7 +9,7 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private bool _startAtZero;
     private int _level;
-    private int _coins;
+    private GameObject _checkpoint;
 
     private void Awake()
     {
@@ -25,6 +25,15 @@ public class DataManager : MonoBehaviour
     public void AddLevel(){
         _level ++;
         SaveLevel();
+    }
+
+    public void UpdateCheckPoint(GameObject checkpoint){
+        _checkpoint = checkpoint;
+        SaveCheckPoint();
+    }
+
+    public GameObject GetCheckpoint(){
+        return _checkpoint;
     }
 
     public int GetCurrentLevel(){
@@ -44,7 +53,7 @@ public class DataManager : MonoBehaviour
     public class SaveData
     {
         public int level;
-        public int coins;
+        public GameObject checkpoint;
     }
 
     public void SaveLevel()
@@ -68,9 +77,31 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public void SaveCheckPoint()
+    {
+        SaveData data = SaveRest();
+        data.checkpoint = _checkpoint;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadCheckPoint()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            _checkpoint = data.checkpoint;
+        }
+    }
+
     private SaveData SaveRest(){
         SaveData d = new SaveData();
         d.level = _level;
+        d.checkpoint = _checkpoint;
         return d;
     }
 
